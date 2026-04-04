@@ -18,33 +18,36 @@
       transition: background-color 0.3s, color 0.3s;
       -webkit-font-smoothing: antialiased;
     }
-    body.light-theme { background-color: #FDFEFE; color: #2C3E50; --surface: #FFFFFF; --border: #EAEDED; }
-    body.dark-theme { background-color: #1B2631; color: #FDFEFE; --surface: #283747; --border: #566573; }
+    body.light-theme { background-color: #F8F9FA; color: #2C3E50; --surface: #FFFFFF; --border: #E9ECEF; --shadow: 0 8px 20px rgba(0,0,0,0.05); }
+    body.dark-theme { background-color: #1B2631; color: #FDFEFE; --surface: #283747; --border: #566573; --shadow: 0 8px 20px rgba(0,0,0,0.2); }
     #app { max-width: 500px; margin: 0 auto; padding-bottom: 80px; display: none; }
-    .top-bar { position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: linear-gradient(135deg, #E74C3C, #F39C12); color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .top-bar { position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: linear-gradient(135deg, #E74C3C, #F39C12); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
     .top-left { display: flex; align-items: center; gap: 12px; }
     .user-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid white; background: #fff; }
     .user-info { line-height: 1.2; }
     .user-name { font-weight: 700; font-size: 1rem; }
     .main-balance { font-size: 0.8rem; opacity: 0.9; }
     .main-balance span { font-weight: 700; font-size: 1rem; }
-    .wallet-icon, .history-icon { background: rgba(255,255,255,0.2); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 30px; cursor: pointer; }
-    .wallet-icon i, .history-icon i { font-size: 1.4rem; }
+    .wallet-icon { background: rgba(255,255,255,0.2); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 30px; cursor: pointer; transition: transform 0.2s; }
+    .wallet-icon i { font-size: 1.4rem; }
+    .wallet-icon:active { transform: scale(0.95); }
     .page { display: none; padding: 16px; animation: fadeIn 0.3s ease; }
     .page.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
-    .card { background: var(--surface); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border); }
+    .card { background: var(--surface); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); }
     .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-    .stat-card { padding: 15px; border-radius: 16px; text-align: center; background: var(--surface); border: 1px solid var(--border); }
+    .stat-card { padding: 15px; border-radius: 16px; text-align: center; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); }
     .stat-card h4 { font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 8px; }
     .stat-card p { font-size: 1.3rem; font-weight: 700; color: #E74C3C; }
-    .task-container { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 20px; margin-bottom: 12px; background: var(--surface); border: 1px solid var(--border); }
+    .task-container { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 20px; margin-bottom: 12px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform 0.2s; }
+    .task-container:active { transform: scale(0.99); }
     .task-icon-img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; }
     .task-info { flex: 1; }
     .task-info h3 { font-size: 1rem; font-weight: 600; }
     .task-info p { font-size: 0.75rem; opacity: 0.7; }
-    .action-btn { padding: 6px 16px; background: linear-gradient(45deg, #E74C3C, #F39C12); border: none; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.8rem; white-space: nowrap; }
-    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .action-btn { padding: 8px 20px; background: linear-gradient(45deg, #E74C3C, #F39C12); border: none; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; transition: all 0.2s; font-size: 0.8rem; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .action-btn:active { transform: scale(0.96); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .progress-container { margin: 15px 0; }
     .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 5px; }
     .progress-bar-bg { height: 8px; background: #ddd; border-radius: 10px; overflow: hidden; }
@@ -58,42 +61,83 @@
     .daily-checkin-card { background: linear-gradient(135deg, #2ECC7120, #27AE6020); border: 1px solid #27AE6040; border-radius: 20px; padding: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
     .profile-header-premium { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #E74C3C10, #F39C1210); border: 1px solid var(--border); border-radius: 24px; margin-bottom: 20px; }
     .profile-avatar-large { width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; margin: 0 auto 15px; object-fit: cover; background: #fff; }
-    .referral-card-premium { background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); border-radius: 24px; padding: 25px; color: white; text-align: center; margin-bottom: 20px; }
+    .referral-card-premium { background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); border-radius: 24px; padding: 20px; color: white; text-align: center; margin-bottom: 20px; box-shadow: var(--shadow); }
     .referral-link-box { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 12px; display: flex; gap: 10px; margin-bottom: 15px; }
     .referral-link-box input { background: none; border: none; color: white; font-size: 0.85rem; flex: 1; outline: none; font-family: monospace; }
-    .copy-btn-premium { background: white; color: #2575fc; border: none; border-radius: 12px; padding: 8px 15px; font-weight: 700; cursor: pointer; }
-    .chart-container { display: flex; align-items: flex-end; justify-content: space-between; height: 150px; margin-top: 10px; border-bottom: 2px solid var(--border); }
-    .chart-bar { width: 10%; background: linear-gradient(to top, #E74C3C, #F39C12); border-radius: 6px 6px 0 0; position: relative; transition: height 0.5s; }
-    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 2000; }
-    .modal-container { background: var(--surface); border-radius: 28px; width: 90%; max-width: 400px; max-height: 85vh; overflow-y: auto; padding: 20px; border: 1px solid var(--border); }
-    .methods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 15px 0; }
-    .method-card-item { text-align: center; background: var(--surface); padding: 15px; border-radius: 20px; cursor: pointer; border: 1px solid var(--border); }
-    .history-item { padding: 12px; border-radius: 16px; background: var(--surface); margin-bottom: 10px; border: 1px solid var(--border); }
-    .earning-wallet-card { background: linear-gradient(135deg, #E74C3C20, #F39C1220); border-radius: 20px; padding: 15px; margin-bottom: 20px; }
+    .copy-btn-premium { background: white; color: #2575fc; border: none; border-radius: 12px; padding: 8px 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .copy-btn-premium:active { transform: scale(0.96); }
+    .methods-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 15px 0; }
+    .method-card-item { text-align: center; background: var(--surface); padding: 12px; border-radius: 20px; cursor: pointer; border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform 0.2s; }
+    .method-card-item:active { transform: scale(0.96); }
+    .method-card-item img { width: 60px; height: 60px; object-fit: contain; border-radius: 12px; margin-bottom: 5px; }
+    .history-item { padding: 12px; border-radius: 16px; background: var(--surface); margin-bottom: 10px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .earning-wallet-card { background: linear-gradient(135deg, #E74C3C20, #F39C1220); border-radius: 20px; padding: 12px 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(231,76,60,0.2); }
+    .earning-wallet-card h3 { font-size: 0.9rem; margin-bottom: 4px; }
+    .earning-wallet-card p { font-size: 1.4rem; font-weight: 700; color: #E74C3C; }
     .loader-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: #FDFEFE; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
     body.dark-theme .loader-screen { background: #1B2631; }
     .spinner { width: 50px; height: 50px; border: 4px solid #E74C3C20; border-top: 4px solid #E74C3C; border-radius: 50%; animation: spin 1s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .support-link-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
-    .support-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 12px; text-align: center; text-decoration: none; color: inherit; transition: 0.2s; }
+    .support-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 12px; text-align: center; text-decoration: none; color: inherit; transition: 0.2s; box-shadow: var(--shadow); }
+    .support-card:active { transform: scale(0.98); }
     .support-card img { width: 50px; height: 50px; border-radius: 12px; margin-bottom: 8px; }
     .support-card span { display: block; font-weight: 500; font-size: 0.8rem; }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 2000; }
+    .modal-container { background: var(--surface); border-radius: 28px; width: 90%; max-width: 400px; max-height: 85vh; overflow-y: auto; padding: 20px; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .close-modal { float: right; font-size: 1.5rem; cursor: pointer; }
   </style>
 </head>
 <body>
 <div id="loader-screen" class="loader-screen"><div class="spinner"></div><p id="loading-text">Loading Earnify...</p><p id="loading-progress">0%</p></div>
 <div id="app">
-  <div class="top-bar"><div class="top-left"><img id="user-photo" class="user-avatar" src="https://via.placeholder.com/44"><div class="user-info"><div class="user-name" id="user-name">User</div><div class="main-balance"><span id="main-balance">0</span> Coins</div></div></div><div style="display:flex; gap:10px;"><div class="history-icon" id="history-icon"><i class="fas fa-history"></i></div><div class="wallet-icon" id="wallet-icon"><i class="fas fa-wallet"></i></div></div></div>
+  <div class="top-bar">
+    <div class="top-left">
+      <img id="user-photo" class="user-avatar" src="https://via.placeholder.com/44">
+      <div class="user-info">
+        <div class="user-name" id="user-name">User</div>
+        <div class="main-balance"><span id="main-balance">0</span> Coins</div>
+      </div>
+    </div>
+    <div class="wallet-icon" id="wallet-icon"><i class="fas fa-wallet"></i></div>
+  </div>
   <main>
-    <div id="home-page" class="page active"><div class="earning-wallet-card"><h3><i class="fas fa-coins"></i> Earning Wallet</h3><p style="font-size:1.8rem; font-weight:700; color:#E74C3C;"><span id="earning-wallet-balance">0</span> Coins</p><small>Minimum 100 Coins to move to main balance.</small><button id="move-to-balance-btn" class="action-btn" style="width:100%; margin-top:12px;">Move to Main Balance</button></div><div id="daily-checkin-container"></div><div id="ad-progress-container"></div><div id="ad-task-container"></div></div>
+    <div id="home-page" class="page active">
+      <div class="earning-wallet-card">
+        <div><h3><i class="fas fa-coins"></i> Earning Wallet</h3><small>Min 100 to move</small></div>
+        <div><p><span id="earning-wallet-balance">0</span> Coins</p><button id="move-to-balance-btn" class="action-btn" style="padding:4px 12px;">Move</button></div>
+      </div>
+      <div id="daily-checkin-container"></div>
+      <div id="ad-progress-container"></div>
+      <div id="ad-task-container"></div>
+    </div>
     <div id="tg-tasks-page" class="page"><h3>🤖 Telegram Bonus Tasks</h3><div id="dynamic-tasks-container"></div></div>
     <div id="web-tasks-page" class="page"><h3>🌐 Web Tasks</h3><div id="web-tasks-container"></div></div>
     <div id="support-page" class="page"><h3>📞 Support Center</h3><div id="support-links-container" class="support-link-grid"></div></div>
-    <div id="profile-page" class="page"><div class="profile-header-premium card"><img id="profile-photo-large" class="profile-avatar-large"><h2 id="profile-name-large"></h2><div class="profile-details"><p><i class="fas fa-id-badge"></i> ID: <span id="profile-id"></span></p><p><i class="fas fa-at"></i> Username: @<span id="profile-username"></span></p></div></div><div class="stats-grid"><div class="stat-card"><h4>Today's Ads</h4><p id="daily-ads-watched">0 / 0</p></div><div class="stat-card"><h4>Total Referrals</h4><p id="referral-count">0</p></div><div class="stat-card"><h4>Total Ads Watched</h4><p id="total-ads-watched">0</p></div><div class="stat-card"><h4>Total Earned</h4><p id="total-earned">0</p></div></div><div class="card premium-graph"><h3>Last 7 Days Earnings</h3><div id="earnings-chart" class="chart-container"></div><div id="earnings-chart-labels" class="chart-labels"></div></div><div id="referral-section"></div></div>
+    <div id="profile-page" class="page">
+      <div class="profile-header-premium card">
+        <img id="profile-photo-large" class="profile-avatar-large">
+        <h2 id="profile-name-large"></h2>
+        <div class="profile-details"><p><i class="fas fa-id-badge"></i> ID: <span id="profile-id"></span></p><p><i class="fas fa-at"></i> Username: @<span id="profile-username"></span></p></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><h4>Today's Ads</h4><p id="daily-ads-watched">0 / 0</p></div>
+        <div class="stat-card"><h4>Total Referrals</h4><p id="referral-count">0</p></div>
+        <div class="stat-card"><h4>Total Ads Watched</h4><p id="total-ads-watched">0</p></div>
+        <div class="stat-card"><h4>Total Earned</h4><p id="total-earned">0</p></div>
+      </div>
+      <div id="referral-section"></div>
+    </div>
   </main>
-  <nav class="bottom-nav"><button class="nav-btn" data-page="tg-tasks-page"><i class="fab fa-telegram"></i><span>TG Task</span></button><button class="nav-btn" data-page="web-tasks-page"><i class="fas fa-globe"></i><span>Web Task</span></button><button class="nav-btn active home-nav-btn" data-page="home-page"><div class="home-icon-wrapper"><i class="fas fa-home"></i></div><span>Home</span></button><button class="nav-btn" data-page="support-page"><i class="fas fa-headset"></i><span>Support</span></button><button class="nav-btn" data-page="profile-page"><i class="fas fa-user"></i><span>Profile</span></button></nav>
+  <nav class="bottom-nav">
+    <button class="nav-btn" data-page="tg-tasks-page"><i class="fab fa-telegram"></i><span>TG Task</span></button>
+    <button class="nav-btn" data-page="web-tasks-page"><i class="fas fa-globe"></i><span>Web Task</span></button>
+    <button class="nav-btn active home-nav-btn" data-page="home-page"><div class="home-icon-wrapper"><i class="fas fa-home"></i></div><span>Home</span></button>
+    <button class="nav-btn" data-page="support-page"><i class="fas fa-headset"></i><span>Support</span></button>
+    <button class="nav-btn" data-page="profile-page"><i class="fas fa-user"></i><span>Profile</span></button>
+  </nav>
 </div>
-<div id="wallet-modal" class="modal-overlay"><div class="modal-container"><div class="modal-header"><h3>💰 Wallet</h3><button class="close-modal">&times;</button></div><div id="wallet-modal-body"></div></div></div>
+<div id="wallet-modal" class="modal-overlay"><div class="modal-container"><div class="modal-header" style="display:flex; justify-content:space-between;"><h3>💰 Wallet</h3><span class="close-modal">&times;</span></div><div id="wallet-modal-body"></div></div></div>
 <div id="withdraw-flow-modal" class="modal-overlay"><div class="modal-container" id="withdraw-flow-container"></div></div>
 <div id="global-popup" class="modal-overlay"><div class="modal-container" id="global-popup-body"></div></div>
 <div id="webTaskPopupModal" class="modal-overlay"><div class="modal-container" id="webTaskPopupBody"></div></div>
@@ -130,16 +174,19 @@
     let referrer = referrerSnap.val();
     if(referrer) await db.ref(`users/${referrerId}/totalEarned`).transaction(v=>(v||0)+commission);
   }
-  async function loadAdAndWait(zoneId){
-    return new Promise((resolve, reject)=>{
-      if(typeof window["show_"+zoneId] === "function") return resolve();
-      let script = document.createElement("script");
-      script.src = "https://libtl.com/sdk.js";
-      script.async = true;
-      script.setAttribute("data-zone", zoneId);
-      document.body.appendChild(script);
-      let check = setInterval(()=>{ if(typeof window["show_"+zoneId] === "function"){ clearInterval(check); resolve(); } },300);
-      setTimeout(()=>{ clearInterval(check); reject("Ad load timeout"); }, 10000);
+  async function loadAdAndWait(zoneId, retries=3){
+    return new Promise(async (resolve, reject)=>{
+      for(let i=0;i<retries;i++){
+        if(typeof window["show_"+zoneId] === "function") return resolve();
+        let script = document.createElement("script");
+        script.src = "https://libtl.com/sdk.js";
+        script.async = true;
+        script.setAttribute("data-zone", zoneId);
+        document.body.appendChild(script);
+        await new Promise(r=>setTimeout(r, 1500));
+        if(typeof window["show_"+zoneId] === "function") return resolve();
+      }
+      reject("Ad SDK failed to load after retries");
     });
   }
   async function enforceDeviceLock(uid){
@@ -165,7 +212,7 @@
     document.getElementById('profile-username').innerText = userState.username||'N/A';
     let moveBtn = document.getElementById('move-to-balance-btn');
     if(moveBtn) moveBtn.disabled = (userState.earningWallet||0) < 100;
-    renderDailyCheckIn(); renderAdProgress(); renderAdTask(); renderTgTasks(); renderWebTasks(); renderReferralSection(); renderEarningsGraph(); renderSupportLinks();
+    renderDailyCheckIn(); renderAdProgress(); renderAdTask(); renderTgTasks(); renderWebTasks(); renderReferralSection(); renderSupportLinks();
   }
   async function renderDailyCheckIn(){
     let container = document.getElementById('daily-checkin-container');
@@ -204,7 +251,7 @@
       showModal('global-popup');
       document.getElementById('global-popup-body').innerHTML = `<div class="spinner"></div><p>অপেক্ষা করুন, এড আসছে...</p>`;
       try{
-        await loadAdAndWait(zoneId);
+        await loadAdAndWait(zoneId, 3);
         if(typeof window["show_"+zoneId] === 'function') await window["show_"+zoneId]();
         else throw new Error("Ad function missing");
         hideModal('global-popup');
@@ -221,14 +268,17 @@
         await sendAdminNotification(`📺 Ad Watched\nUser: ${userState.firstName} (${tgUser.id})\nReward: ${adValue} Coins`);
         showAlert(`+${adValue} earned`);
         renderAll();
-      } catch(e){ hideModal('global-popup'); showAlert("Ad failed, try again"); console.error(e); }
+      } catch(e){ 
+        hideModal('global-popup'); 
+        showAlert("Ad failed, please try again."); 
+        console.error(e);
+      }
       window.adRunning = false;
     };
   }
   function renderAdTask(){
     let container = document.getElementById('ad-task-container');
     if(!container) return;
-    let limitReached = userState.dailyAdCount >= (appConfig.dailyAdLimit||50);
     container.innerHTML = `<div class="task-container"><img class="task-icon-img" src="https://img.icons8.com/color/96/play--v1.png"><div class="task-info"><h3>Watch Ad</h3><p>Earn ${appConfig.adValue||10} Coins</p></div><button id="watch-ad-btn" class="action-btn" ${window.adRunning?'disabled':''}>${window.adRunning?'Watching...':'Watch Now'}</button></div>`;
     document.getElementById('watch-ad-btn')?.addEventListener('click', handleWatchAd);
   }
@@ -334,13 +384,6 @@
       document.getElementById('copy-ref')?.addEventListener('click',()=>{ navigator.clipboard.writeText(link); showAlert("Link copied!"); });
     }
   }
-  async function renderEarningsGraph(){
-    let today=new Date(), dates=[], earnings=[];
-    for(let i=6;i>=0;i--){ let d=new Date(today); d.setDate(today.getDate()-i); dates.push(d.toISOString().slice(0,10)); }
-    for(let date of dates){ let snap=await db.ref(`userEarnings/${tgUser.id}/${date}`).once('value'); earnings.push(snap.val()||0); }
-    let maxE=Math.max(...earnings,1), chartDiv=document.getElementById('earnings-chart'), labelsDiv=document.getElementById('earnings-chart-labels');
-    if(chartDiv&&labelsDiv){ chartDiv.innerHTML=''; labelsDiv.innerHTML=''; earnings.forEach((val,i)=>{ let height=(val/maxE)*100; chartDiv.innerHTML+=`<div class="chart-bar" style="height:${height}%;"><span class="chart-bar-val">${val}</span></div>`; labelsDiv.innerHTML+=`<span>${new Date(dates[i]).getDate()}</span>`; }); }
-  }
   async function moveToBalance(){
     if((userState.earningWallet||0)<100) return;
     let amount=userState.earningWallet;
@@ -351,13 +394,16 @@
     renderAll();
     showAlert("Moved to main balance!");
   }
-  async function showHistory(){
-    let snap=await db.ref(`users/${tgUser.id}/history`).orderByChild('timestamp').limitToLast(100).once('value');
-    let items=[]; snap.forEach(r=>items.push(r.val()));
+  async function showWithdrawHistory(){
+    let snap=await db.ref(`withdrawals/completed`).orderByChild('userId').equalTo(tgUser.id).once('value');
+    let rejectedSnap=await db.ref(`withdrawals/rejected`).orderByChild('userId').equalTo(tgUser.id).once('value');
+    let items=[];
+    snap.forEach(r=>items.push({...r.val(), status:'Completed'}));
+    rejectedSnap.forEach(r=>items.push({...r.val(), status:'Rejected'}));
     items.sort((a,b)=>b.timestamp-a.timestamp);
-    let html=`<div class="modal-header"><h3>Complete History</h3><button class="close-modal">&times;</button></div><div style="max-height:70vh; overflow-y:auto;">`;
-    if(!items.length) html+="<p>No history</p>";
-    items.forEach(req=>{ let date=new Date(req.timestamp).toLocaleString(), color=req.status==='Completed'?'#27ae60':(req.status==='Rejected'?'#e74c3c':'#f39c12'); html+=`<div class="history-item"><div><strong>${req.name}</strong><br><small>${date}</small></div><div><span style="color:${color}">${req.reward} Coins</span><br><small>${req.status}</small></div>${req.message?`<p style="color:#e74c3c">${req.message}</p>`:''}</div>`; });
+    let html=`<div class="modal-header"><h3>Withdraw History</h3><span class="close-modal">&times;</span></div><div style="max-height:70vh; overflow-y:auto;">`;
+    if(!items.length) html+="<p>No withdrawal history</p>";
+    items.forEach(req=>{ let date=new Date(req.timestamp).toLocaleString(), color=req.status==='Completed'?'#27ae60':'#e74c3c'; html+=`<div class="history-item"><div><strong>${req.method}</strong><br><small>${date}</small></div><div><span style="color:${color}">${req.amount} Coins</span><br><small>${req.status}</small></div>${req.account?`<p>Account: ${req.account}</p>`:''}</div>`; });
     html+=`</div>`;
     document.getElementById('global-popup-body').innerHTML=html;
     showModal('global-popup');
@@ -368,8 +414,8 @@
     if((userState.referrals||0) < minRef){ showAlert(`Withdrawal requires at least ${minRef} referrals. You have ${userState.referrals||0}.`); return; }
     let methods = type==='bdt'?(appConfig.withdrawBDTMethods||[]):(appConfig.withdrawUSDTMethods||[]);
     if(!methods.length){ showAlert("No methods"); return; }
-    let grid = `<div class="methods-grid">`+methods.map((m,i)=>`<div class="method-card-item" data-idx="${i}"><img src="${m.photo}" width="40" style="border-radius:8px"><p>${m.name}</p><small>Min ${m.min}</small></div>`).join('')+`</div>`;
-    document.getElementById('withdraw-flow-container').innerHTML = `<div class="modal-header"><h3>Select ${type.toUpperCase()} Method</h3><button class="close-modal">&times;</button></div>${grid}`;
+    let grid = `<div class="methods-grid-3">`+methods.map((m,i)=>`<div class="method-card-item" data-idx="${i}"><img src="${m.photo}" style="width:70px; height:70px;"></div>`).join('')+`</div>`;
+    document.getElementById('withdraw-flow-container').innerHTML = `<div class="modal-header" style="display:flex; justify-content:space-between;"><h3>Select ${type.toUpperCase()} Method</h3><span class="close-modal">&times;</span></div>${grid}`;
     showModal('withdraw-flow-modal');
     document.querySelectorAll('.method-card-item[data-idx]').forEach(el=>{ el.addEventListener('click',async()=>{
       let idx=parseInt(el.dataset.idx), method=methods[idx], rate=type==='bdt'?(appConfig.coinToBDT||0):(appConfig.coinToUSDT||0);
@@ -422,6 +468,7 @@
     if(!appConfig.referralBonus) appConfig.referralBonus=100;
     if(!appConfig.referralPercent) appConfig.referralPercent=0;
     if(!appConfig.withdrawReferralLimit) appConfig.withdrawReferralLimit=0;
+    if(!appConfig.walletUI) appConfig.walletUI={};
     await enforceDeviceLock(tgUser.id);
     await loadUserData();
     renderAll();
@@ -437,17 +484,20 @@
   const firebaseConfig={ apiKey:"AIzaSyB03K2JAA4iyBLgAX6Nv9Z0VMGX3qMGqBc", authDomain:"earnify-f3ac8.firebaseapp.com", databaseURL:"https://earnify-f3ac8-default-rtdb.firebaseio.com", projectId:"earnify-f3ac8", storageBucket:"earnify-f3ac8.firebasestorage.app", messagingSenderId:"273672601348", appId:"1:273672601348:web:4d627b5689575857345a51" };
   if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   db=firebase.database();
-  document.querySelectorAll('.nav-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ let pageId=btn.dataset.page; if(!pageId) return; document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(pageId)?.classList.add('active'); document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); if(pageId==='home-page'||pageId==='profile-page') renderEarningsGraph(); }); });
+  document.querySelectorAll('.nav-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ let pageId=btn.dataset.page; if(!pageId) return; document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(pageId)?.classList.add('active'); document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }); });
   document.getElementById('move-to-balance-btn')?.addEventListener('click',moveToBalance);
   document.getElementById('wallet-icon')?.addEventListener('click',()=>{
-    document.getElementById('wallet-modal-body').innerHTML = `<div class="methods-grid"><div id="withdraw-bdt-card" class="method-card-item"><i class="fas fa-taka-sign"></i><p>BDT</p></div><div id="withdraw-usdt-card" class="method-card-item"><i class="fas fa-dollar-sign"></i><p>USDT</p></div><div id="history-card" class="method-card-item"><i class="fas fa-history"></i><p>History</p></div></div>`;
+    let bdtImg = appConfig.walletUI?.bdtPhoto || 'https://img.icons8.com/color/96/bangladesh.png';
+    let usdtImg = appConfig.walletUI?.usdtPhoto || 'https://img.icons8.com/color/96/us-dollar.png';
+    let historyImg = appConfig.walletUI?.historyPhoto || 'https://img.icons8.com/color/96/history.png';
+    document.getElementById('wallet-modal-body').innerHTML = `<div class="methods-grid-3"><div id="withdraw-bdt-card" class="method-card-item"><img src="${bdtImg}" style="width:60px;"></div><div id="withdraw-usdt-card" class="method-card-item"><img src="${usdtImg}" style="width:60px;"></div><div id="history-card" class="method-card-item"><img src="${historyImg}" style="width:60px;"></div></div>`;
     showModal('wallet-modal');
-    document.getElementById('withdraw-bdt-card')?.addEventListener('click',()=>startWithdraw('bdt'));
-    document.getElementById('withdraw-usdt-card')?.addEventListener('click',()=>startWithdraw('usdt'));
-    document.getElementById('history-card')?.addEventListener('click',showHistory);
+    document.getElementById('withdraw-bdt-card')?.addEventListener('click',()=>{ hideModal('wallet-modal'); startWithdraw('bdt'); });
+    document.getElementById('withdraw-usdt-card')?.addEventListener('click',()=>{ hideModal('wallet-modal'); startWithdraw('usdt'); });
+    document.getElementById('history-card')?.addEventListener('click',()=>{ hideModal('wallet-modal'); showWithdrawHistory(); });
   });
-  document.getElementById('history-icon')?.addEventListener('click',showHistory);
   window.addEventListener('click',e=>{ if(e.target.classList?.contains('modal-overlay')) e.target.style.display='none'; });
+  document.querySelectorAll('.close-modal').forEach(btn=>btn.addEventListener('click',function(){ this.closest('.modal-overlay').style.display='none'; }));
   setInterval(()=>{ if(document.getElementById('app').style.display==='block'){ renderDailyCheckIn(); renderAdTask(); renderTgTasks(); renderWebTasks(); } }, 1000);
   initApp();
 })();
